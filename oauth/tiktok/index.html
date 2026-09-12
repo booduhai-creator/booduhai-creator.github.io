@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connecting to booduhclips...</title>
+<style>
+body{margin:0;background:#101319;color:#eef1f7;font:16px/1.6 "Segoe UI",system-ui,sans-serif;display:grid;place-items:center;height:100vh;text-align:center;padding:24px}
+.b{max-width:460px}
+h1{font-size:22px;margin:0 0 10px;color:#f2b441}
+p{color:#8d97ad;margin:0 0 14px}
+a{color:#f2b441}
+</style></head><body><div class="b">
+<h1>Connecting to booduhclips...</h1>
+<p id="msg">Sending you back to the app on your computer.</p>
+<p id="fallback" hidden>If nothing happened, booduhclips is not running. Open it, then <a id="again" href="#">click here</a>.</p>
+</div>
+<script>
+/* TikTok requires an https address to send you back to, but booduhclips runs on your own computer at
+   127.0.0.1. This page is the bridge: it takes the sign-in result from TikTok and hands it straight to
+   the app, unchanged. Nothing is stored or sent anywhere else - it is a redirect and nothing more. */
+(function(){
+  var target = "http://127.0.0.1:5757/oauth/tiktok/callback" + (location.search || "");
+  document.getElementById('again').href = target;
+  setTimeout(function(){ document.getElementById('fallback').hidden = false; }, 2500);
+  location.replace(target);
+})();
+</script></body></html>
